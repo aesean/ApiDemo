@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.recyclerview.MultiTypeRecyclerViewActivity">
+
+    <Button
+        android:id="@+id/set_view0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="setView0"
+        android:text="view0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/set_view1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="setView1"
+        android:text="view1"
+        app:layout_constraintLeft_toRightOf="@+id/set_view0"
+        app:layout_constraintTop_toTopOf="@+id/set_view0"/>
+
+    <Button
+        android:id="@+id/set_view2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="setView2"
+        android:text="view2"
+        app:layout_constraintLeft_toRightOf="@+id/set_view1"
+        app:layout_constraintTop_toTopOf="@+id/set_view0"/>
+
+    <Button
+        android:id="@+id/set_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="setHead"
+        android:text="head"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/set_view1"/>
+
+    <Button
+        android:id="@+id/set_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="setContent"
+        android:text="content"
+        app:layout_constraintLeft_toRightOf="@+id/set_head"
+        app:layout_constraintTop_toTopOf="@+id/set_head"/>
+
+    <Button
+        android:id="@+id/set_foot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="setFoot"
+        android:text="foot"
+        app:layout_constraintLeft_toRightOf="@+id/set_content"
+        app:layout_constraintTop_toTopOf="@+id/set_head"/>
+
+    <Button
+        android:id="@+id/check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="checkDataType"
+        android:text="check"
+        app:layout_constraintLeft_toRightOf="@+id/set_foot"
+        app:layout_constraintTop_toTopOf="@+id/set_head"/>
+
+    <Button
+        android:id="@+id/add_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="addOne"
+        android:text="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/set_foot"/>
+
+    <Button
+        android:id="@+id/add_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="addTwo"
+        android:text="2"
+        app:layout_constraintLeft_toRightOf="@+id/add_one"
+        app:layout_constraintTop_toTopOf="@+id/add_one"/>
+
+    <Button
+        android:id="@+id/add_three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="addThree"
+        android:text="3"
+        app:layout_constraintLeft_toRightOf="@+id/add_two"
+        app:layout_constraintTop_toTopOf="@+id/add_one"/>
+
+    <Button
+        android:id="@+id/add_four"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="addFour"
+        android:text="4"
+        app:layout_constraintLeft_toRightOf="@+id/add_three"
+        app:layout_constraintTop_toTopOf="@+id/add_one"/>
+
+    <Button
+        android:id="@+id/add_five"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="addFive"
+        android:text="5"
+        app:layout_constraintLeft_toRightOf="@+id/add_four"
+        app:layout_constraintTop_toTopOf="@+id/add_one"/>
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#44ffcc"
+        android:gravity="center_vertical"
+        android:minHeight="48dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/remove"
+        app:layout_constraintTop_toBottomOf="@+id/add_one"
+        tools:text="-->>result-->>result-->>result-->>result-->>result-->>result-->>result"/>
+
+    <Button
+        android:id="@+id/remove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="removeByType"
+        android:text="remove"
+        app:layout_constraintBottom_toBottomOf="@+id/result"
+        app:layout_constraintRight_toLeftOf="@+id/run"
+        app:layout_constraintTop_toTopOf="@+id/result"/>
+
+    <Button
+        android:id="@+id/run"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="run"
+        android:text="run"
+        app:layout_constraintBottom_toBottomOf="@+id/result"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/result"/>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp"
+        android:background="#cccccc"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/result"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider"/>
+</android.support.constraint.ConstraintLayout>
