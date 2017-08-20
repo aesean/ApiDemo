@@ -19,6 +19,9 @@
         </activity>
         <activity android:name=".activity.sample0.Sample0Activity"/>
         <activity android:name=".activity.sample1.Sample1Activity"/>
+        <activity android:name=".activity.constraint.ConstraintLayoutActivity"/>
+        <activity android:name=".activity.recyclerview.MultiTypeRecyclerViewActivity">
+        </activity>
     </application>
 
 </manifest>
