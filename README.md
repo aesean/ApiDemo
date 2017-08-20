@@ -1,0 +1,9 @@
+# ApiDemo
+由于经常需要在本地测试或者学习一些AndroidApi的使用，然后就经常需要新建Project或者module来测试这些代码。然后就搞出了非常非常多的Project或者module，然后手机上也被装了满屏幕的机器人。这里参考Google官方的ApiSample，搭建了一个简单的框架。来方便写各种不同功能的代码。
+MainActivity有个RecyclerView，然后通过
+```
+PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_ACTIVITIES);
+```
+拿到所有Activiy，然后RecyclerView显示当前App的所有Activity，点击Activity跳转对应的Activity。可以大大方便不同功能Api的测试使用。
+# 如何使用
+在com.aesean.activity包下新建一个你需要测试的功能的包。比如想写个ConstraintLayout的demo，就可以在activity包下新建一个包叫constraint，然后添加一个Activity叫ConstraintLayoutActivity，并添加自己的测试代码，注意在Manifest中添加Activity。然后写完就可以直接运行测试了。主界面会自动显示ConstraintLayoutActivity和ConstraintLayoutActivity所在的包名称，点击会打开这个Activity，然后就可以看到自己的测试效果了。
