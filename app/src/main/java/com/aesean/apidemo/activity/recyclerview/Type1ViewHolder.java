@@ -43,5 +43,13 @@ public class Type1ViewHolder extends Simple2ViewHolder<Type1ViewHolder.Data> {
         public String getContent() {
             return mContent;
         }
+
+        @Override
+        public String toString() {
+            return "Data{" +
+                    "Title='" + mTitle + '\'' +
+                    ", Content='" + mContent + '\'' +
+                    '}';
+        }
     }
 }

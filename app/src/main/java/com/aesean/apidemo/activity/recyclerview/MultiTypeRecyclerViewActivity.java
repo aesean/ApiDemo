@@ -1,16 +1,20 @@
 package com.aesean.apidemo.activity.recyclerview;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.aesean.apidemo.R;
 import com.aesean.apidemo.base.BaseActivity;
+import com.aesean.apidemo.widget.recyclerview.AbsViewHolder;
 import com.aesean.apidemo.widget.recyclerview.MultiTypeAdapterImpl;
+import com.aesean.apidemo.widget.recyclerview.ViewHolderCreator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +46,27 @@ public class MultiTypeRecyclerViewActivity extends BaseActivity {
 
         mAdapter = new MultiTypeAdapterImpl();
         mAdapter.register(Type0ViewHolder.Data.class, Type0ViewHolder.class);
-        mAdapter.register(Type1ViewHolder.Data.class, Type1ViewHolder.class);
+        // mAdapter.register(Type1ViewHolder.Data.class, Type1ViewHolder.class);
+        mAdapter.register(Type1ViewHolder.Data.class, new ViewHolderCreator<Type1ViewHolder.Data, Type1ViewHolder>() {
+            @Override
+            public Type1ViewHolder create(ViewGroup parent) {
+                final Type1ViewHolder viewHolder = new Type1ViewHolder(parent);
+                viewHolder.setOnItemClickListener(new AbsViewHolder.OnItemClickListener<Type1ViewHolder.Data>() {
+                    @Override
+                    public boolean onClick(Type1ViewHolder.Data data) {
+                        showLongMessage("Click Type1ViewHolder. data = " + viewHolder.getData());
+                        return false;
+                    }
+                });
+                return viewHolder;
+            }
+
+            @NonNull
+            @Override
+            public Class<Type1ViewHolder> getViewHolderClass() {
+                return Type1ViewHolder.class;
+            }
+        });
         mAdapter.register(Type2ViewHolder.Data.class, Type2ViewHolder.class);
         recyclerView.setAdapter(mAdapter);
         update();
