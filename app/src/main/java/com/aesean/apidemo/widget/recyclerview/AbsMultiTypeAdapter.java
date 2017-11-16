@@ -19,7 +19,7 @@ import java.util.Map;
 
 /**
  * AbsMultiTypeAdapter
- * 抽象多类型Adapter，支持多类型绑定，没有实现数据保存，可以派生子类实现各种不同数据类型。
+ * 抽象多类型Adapter，支持多类型绑定，没有实现数据保存，需要派生子类实现各种不同数据类型。
  *
  * @author xl
  * @version 1.1
@@ -152,7 +152,9 @@ abstract class AbsMultiTypeAdapter extends RecyclerView.Adapter<AbsViewHolder<?>
         // 优先检查ViewCreator
         ViewHolderCreator<?, ? extends AbsViewHolder<?>> viewHolderCreator = mViewCreator.get(viewType);
         if (viewHolderCreator != null) {
-            return viewHolderCreator.create(parent);
+            AbsViewHolder<?> viewHolder = viewHolderCreator.create(parent);
+            viewHolder.attach(this);
+            return viewHolder;
         }
         // 检查ViewTypeMap
         Class<? extends AbsViewHolder<?>> viewClass = mViewTypeMap.get(viewType);
@@ -161,8 +163,8 @@ abstract class AbsMultiTypeAdapter extends RecyclerView.Adapter<AbsViewHolder<?>
         }
         try {
             Constructor<? extends AbsViewHolder<?>> constructor = viewClass.getDeclaredConstructor(ViewGroup.class);
-            // if (!constructor.isAccessible()) {
-            //     constructor.setAccessible(true);
+            // if ( !constructor.isAccessible() ) {
+            //   constructor.setAccessible( true );
             // }
             AbsViewHolder<?> viewHolder = constructor.newInstance(parent);
             viewHolder.attach(this);
@@ -370,6 +372,7 @@ abstract class AbsMultiTypeAdapter extends RecyclerView.Adapter<AbsViewHolder<?>
     }
 
     public static class ViewTypeNotFoundException extends RuntimeException {
+
         public ViewTypeNotFoundException() {
         }
 

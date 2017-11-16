@@ -14,7 +14,8 @@ import java.util.List;
  */
 public class MultiTypeAdapterImpl extends AbsMultiTypeAdapter {
 
-    private ArrayList<ArrayList<Object>> mDataSource;
+    @NonNull
+    private final ArrayList<ArrayList<Object>> mDataSource;
 
     public MultiTypeAdapterImpl() {
         super();
@@ -41,6 +42,11 @@ public class MultiTypeAdapterImpl extends AbsMultiTypeAdapter {
         checkData(data);
         int position = addData(mDataSource, type, offset, data);
         notifyItemInserted(position);
+    }
+
+    public void removeItemFrom(int position, int count) {
+        removeDataFrom(mDataSource, position, count);
+        notifyItemRangeRemoved(position, count);
     }
 
     public void removeItem(int type, int offset) {
@@ -107,6 +113,11 @@ public class MultiTypeAdapterImpl extends AbsMultiTypeAdapter {
     @Override
     public int getItemCount() {
         return getSize();
+    }
+
+    public int getItemTypeCount(int type) {
+        checkSize(mDataSource, type + 1);
+        return mDataSource.get(type).size();
     }
 
     private int getSize() {
@@ -210,6 +221,20 @@ public class MultiTypeAdapterImpl extends AbsMultiTypeAdapter {
         int position = positionOf(source, index, offset);
         source.get(index).remove(offset);
         return position;
+    }
+
+    private static <T> void removeDataFrom(ArrayList<ArrayList<T>> source, int position, int count) {
+        int offset = 0;
+        for (ArrayList<T> list : source) {
+            int size = list.size();
+            int temp = offset + size;
+            if (position < temp) {
+                // list.remove(position - offset);
+                list.subList(position - offset, position - offset + count).clear();
+                return;
+            }
+            offset += size;
+        }
     }
 
     private static void removeData(ArrayList<ArrayList<Object>> source, int position) {
